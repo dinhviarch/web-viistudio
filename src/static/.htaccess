@@ -7,10 +7,13 @@ ErrorDocument 404 /404.html
 AddDefaultCharset UTF-8
 AddType image/svg+xml .svg
 
-# Bật dòng dưới SAU KHI đã cài SSL miễn phí cho tên miền trong bảng điều khiển InfinityFree
-# RewriteEngine On
-# RewriteCond %{HTTPS} off
-# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# Luôn chuyển http → https (tên miền miễn phí của InfinityFree có sẵn SSL;
+# tên miền riêng cần cài SSL trong bảng điều khiển trước). Kiểm tra cả X-Forwarded-Proto
+# để không bị vòng lặp chuyển hướng khi request đi qua proxy.
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 <IfModule mod_expires.c>
   ExpiresActive On

@@ -7,7 +7,7 @@ module.exports = {
   tagline: 'Kiến trúc của ánh sáng và khoảng lặng',
   description:
     'Viin là văn phòng kiến trúc sư thiết kế nhà ở, công trình văn hoá và không gian nội thất — tối giản, bền vững và gắn với khí hậu nhiệt đới Việt Nam.',
-  url: (process.env.SITE_URL || 'https://viin.infinityfreeapp.com').replace(/\/$/, ''),
+  url: (process.env.SITE_URL || 'https://viistudio.site.je').replace(/\/$/, ''),
   // Đặt '/ten-thu-muc' nếu website nằm trong thư mục con thay vì gốc tên miền
   basePath: process.env.BASE_PATH || '',
   locale: 'vi_VN',

@@ -95,8 +95,8 @@ git push -u origin main
    (vd: `viin.infinityfreeapp.com` hoặc tên miền riêng).
 2. Trong **Client Area → Account → FTP Details**, ghi lại: *FTP Hostname* (`ftpupload.net`), *FTP Username*
    (`if0_xxxxxxxx`), *FTP Password*.
-3. (Nên làm) **Client Area → SSL Certificates** cài SSL miễn phí, sau đó bỏ dấu `#` ở khối chuyển hướng HTTPS trong
-   `src/static/.htaccess`.
+3. SSL: tên miền miễn phí của InfinityFree (vd: `viistudio.site.je`) có sẵn HTTPS. Nếu dùng tên miền riêng, cài SSL
+   miễn phí trong **Client Area → SSL Certificates** trước — `src/static/.htaccess` luôn chuyển http sang https.
 
 ### Cách 1 — Tự động bằng GitHub Actions (khuyên dùng)
 
