@@ -1,0 +1,18 @@
+{
+  "name": "viin-website",
+  "version": "1.0.0",
+  "description": "Website Văn phòng Kiến trúc sư Viin — site tĩnh build bằng Node.js, deploy lên InfinityFree",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build.js",
+    "dev": "node scripts/dev.js",
+    "preview": "node scripts/dev.js --no-watch"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "ejs": "^3.1.10"
+  }
+}

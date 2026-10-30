@@ -1,0 +1,21 @@
+<header class="site-header" data-header>
+  <div class="container header-inner">
+    <a class="logo" href="<%= url('/') %>" aria-label="<%= site.fullName %> — Trang chủ">
+      <span class="logo-mark" aria-hidden="true"></span>
+      <span class="logo-word">viin</span>
+      <span class="logo-sub">architects</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+      <span class="sr-only">Mở menu</span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Điều hướng chính" data-nav>
+      <ul>
+        <% site.nav.forEach((item) => { const active = page.path.startsWith(item.href); %>
+        <li><a href="<%= url(item.href) %>"<% if (active) { %> aria-current="page"<% } %>><%= item.label %></a></li>
+        <% }) %>
+      </ul>
+      <a class="btn btn-small" href="<%= url('/lien-he/') %>">Đặt lịch tư vấn</a>
+    </nav>
+  </div>
+</header>

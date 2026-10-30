@@ -1,0 +1,78 @@
+<%- include('../partials/page-hero', {
+  eyebrow: 'Liên hệ',
+  heading: 'Hãy kể cho chúng tôi<br><em>về ngôi nhà bạn mơ ước.</em>',
+  lead: 'Điền vài thông tin bên dưới, kiến trúc sư của Viin sẽ liên hệ lại trong vòng một ngày làm việc để hẹn buổi tư vấn miễn phí.'
+}) %>
+
+<section class="section section-tight">
+  <div class="container contact-grid">
+    <form class="contact-form" data-contact-form
+          data-endpoint="<%= site.formEndpoint %>" data-email="<%= site.contact.email %>"
+          <% if (site.formEndpoint) { %>action="<%= site.formEndpoint %>" method="POST"<% } %> novalidate>
+      <div class="field-row">
+        <div class="field">
+          <label for="name">Họ và tên *</label>
+          <input id="name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="phone">Số điện thoại *</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required pattern="[0-9 +().-]{8,}">
+        </div>
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email">
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="type">Loại công trình</label>
+          <select id="type" name="type">
+            <option>Nhà phố</option>
+            <option>Biệt thự / Nhà vườn</option>
+            <option>Căn hộ / Nội thất</option>
+            <option>Cải tạo</option>
+            <option>Công trình công cộng / Văn phòng</option>
+            <option>Khác</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="location">Địa điểm xây dựng</label>
+          <input id="location" name="location" type="text" placeholder="VD: Long Biên, Hà Nội">
+        </div>
+      </div>
+      <div class="field">
+        <label for="message">Mô tả ngắn về dự án *</label>
+        <textarea id="message" name="message" rows="5" required placeholder="Diện tích đất, số người ở, mong muốn, ngân sách dự kiến…"></textarea>
+      </div>
+      <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="form-footer">
+        <button class="btn" type="submit">Gửi yêu cầu <%- include('../partials/icon', { name: 'arrow' }) %></button>
+        <p class="form-status" role="status" aria-live="polite" data-form-status></p>
+      </div>
+    </form>
+
+    <aside class="contact-info">
+      <div class="info-block">
+        <h2 class="footer-title">Studio Hà Nội</h2>
+        <address><%= site.contact.address %></address>
+      </div>
+      <div class="info-block">
+        <h2 class="footer-title">Điện thoại</h2>
+        <a class="info-big" href="tel:<%= site.contact.phone.replace(/\s/g, '') %>"><%= site.contact.phone %></a>
+      </div>
+      <div class="info-block">
+        <h2 class="footer-title">Email</h2>
+        <a class="info-big" href="mailto:<%= site.contact.email %>"><%= site.contact.email %></a>
+      </div>
+      <div class="info-block">
+        <h2 class="footer-title">Giờ làm việc</h2>
+        <p><%= site.contact.hours %></p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="map">
+  <iframe title="Bản đồ đến <%= site.fullName %>" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://maps.google.com/maps?q=<%= encodeURIComponent(site.contact.mapQuery) %>&z=16&output=embed"></iframe>
+</section>

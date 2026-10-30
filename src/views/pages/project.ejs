@@ -1,0 +1,60 @@
+<article>
+  <header class="project-hero">
+    <div class="container">
+      <a class="back-link" href="<%= url('/du-an/') %>"><%- include('../partials/icon', { name: 'arrow-left' }) %> Tất cả dự án</a>
+      <p class="eyebrow"><%= catLabel(project.category) %> · <%= project.year %></p>
+      <h1 class="page-title"><%= project.title %></h1>
+      <p class="page-lead"><%= project.summary %></p>
+    </div>
+  </header>
+
+  <figure class="project-cover container">
+    <img src="<%= url(project.cover) %>" alt="<%= project.title %> — <%= project.gallery[0].caption %>" width="1200" height="900" fetchpriority="high">
+  </figure>
+
+  <section class="section section-tight">
+    <div class="container project-body">
+      <dl class="facts">
+        <div><dt>Địa điểm</dt><dd><%= project.location %></dd></div>
+        <div><dt>Năm</dt><dd><%= project.year %></dd></div>
+        <div><dt>Diện tích sàn</dt><dd><%= project.area %></dd></div>
+        <div><dt>Trạng thái</dt><dd><%= project.status %></dd></div>
+        <% Object.entries(project.facts || {}).forEach(([k, v]) => { %>
+        <div><dt><%= k %></dt><dd><%= v %></dd></div>
+        <% }) %>
+      </dl>
+      <div class="prose">
+        <% project.body.forEach((para, i) => { %>
+        <p<% if (i === 0) { %> class="prose-lead"<% } %>><%= para %></p>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-tight">
+    <div class="container">
+      <h2 class="sr-only">Hình ảnh dự án</h2>
+      <div class="gallery">
+        <% project.gallery.slice(1).forEach((img) => { %>
+        <figure class="gallery-item reveal">
+          <img src="<%= url(img.src) %>" alt="<%= project.title %> — <%= img.caption %>" loading="lazy" width="1200" height="900">
+          <figcaption><%= img.caption %></figcaption>
+        </figure>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <nav class="project-pager container" aria-label="Dự án khác">
+    <a href="<%= url('/du-an/' + project.prev.slug + '/') %>" class="pager-link">
+      <span class="pager-label"><%- include('../partials/icon', { name: 'arrow-left' }) %> Dự án trước</span>
+      <span class="pager-title"><%= project.prev.title %></span>
+    </a>
+    <a href="<%= url('/du-an/' + project.next.slug + '/') %>" class="pager-link pager-next">
+      <span class="pager-label">Dự án tiếp <%- include('../partials/icon', { name: 'arrow' }) %></span>
+      <span class="pager-title"><%= project.next.title %></span>
+    </a>
+  </nav>
+</article>
+
+<%- include('../partials/cta') %>

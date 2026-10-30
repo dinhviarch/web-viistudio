@@ -1,0 +1,105 @@
+<% const featured = projects.filter((p) => p.featured); const hero = featured[0]; %>
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">Văn phòng kiến trúc sư · Từ <%= site.founded %></p>
+      <h1 class="hero-title">Kiến trúc của <em>ánh sáng</em><br>và khoảng lặng.</h1>
+      <p class="hero-lead"><%= site.description %></p>
+      <div class="hero-actions">
+        <a class="btn" href="<%= url('/du-an/') %>">Xem dự án <%- include('../partials/icon', { name: 'arrow' }) %></a>
+        <a class="link-underline" href="<%= url('/lien-he/') %>">Đặt lịch tư vấn miễn phí</a>
+      </div>
+    </div>
+    <figure class="hero-figure">
+      <a href="<%= url(hero.url) %>">
+        <img src="<%= url(hero.cover) %>" alt="<%= hero.title %>" width="1200" height="900" fetchpriority="high">
+      </a>
+      <figcaption><span><%= hero.title %></span><span><%= hero.location %> · <%= hero.year %></span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="section intro">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-index">01</span>
+      <p class="eyebrow">Studio</p>
+    </div>
+    <p class="statement reveal">Chúng tôi thiết kế những công trình <em>thuộc về nơi chốn</em> — mát vào mùa hè, ấm vào mùa đông, mở ra với cây xanh và đủ tĩnh để người ở nghe thấy tiếng mưa.</p>
+    <dl class="stats">
+      <% content.stats.forEach((s) => { %>
+      <div class="stat reveal"><dt><%= s.label %></dt><dd><%= s.value %></dd></div>
+      <% }) %>
+    </dl>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head section-head-split">
+      <div>
+        <span class="section-index">02</span>
+        <p class="eyebrow">Dự án tiêu biểu</p>
+        <h2 class="section-title">Công trình gần đây</h2>
+      </div>
+      <a class="link-underline" href="<%= url('/du-an/') %>">Tất cả dự án (<%= projects.length %>)</a>
+    </div>
+    <div class="featured-grid">
+      <% featured.slice(0, 4).forEach((project) => { %>
+        <%- include('../partials/project-card', { project }) %>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head section-head-split">
+      <div>
+        <span class="section-index">03</span>
+        <p class="eyebrow">Dịch vụ</p>
+        <h2 class="section-title">Từ ý tưởng tới ngày dọn vào ở</h2>
+      </div>
+      <a class="link-underline" href="<%= url('/dich-vu/') %>">Chi tiết dịch vụ</a>
+    </div>
+    <ol class="service-list">
+      <% content.services.forEach((s, i) => { %>
+      <li class="service-row reveal">
+        <span class="service-num"><%= String(i + 1).padStart(2, '0') %></span>
+        <h3 class="service-title"><%= s.title %></h3>
+        <p class="service-text"><%= s.summary %></p>
+      </li>
+      <% }) %>
+    </ol>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-index">04</span>
+      <p class="eyebrow">Quy trình</p>
+      <h2 class="section-title">Năm bước làm việc cùng Viin</h2>
+    </div>
+    <ol class="process">
+      <% content.process.forEach((step, i) => { %>
+      <li class="process-step reveal">
+        <span class="process-num"><%= String(i + 1).padStart(2, '0') %></span>
+        <h3><%= step.title %></h3>
+        <p><%= step.text %></p>
+      </li>
+      <% }) %>
+    </ol>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <figure class="quote reveal">
+      <blockquote><p>“<%= content.testimonials[0].quote %>”</p></blockquote>
+      <figcaption><strong><%= content.testimonials[0].name %></strong> — <%= content.testimonials[0].role %></figcaption>
+    </figure>
+  </div>
+</section>
+
+<%- include('../partials/cta') %>

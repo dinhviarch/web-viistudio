@@ -1,0 +1,83 @@
+<%- include('../partials/page-hero', {
+  eyebrow: 'Studio',
+  heading: 'Một văn phòng nhỏ,<br><em>những công trình bền lâu.</em>',
+  lead: 'Viin được thành lập năm ' + site.founded + ' tại Hà Nội bởi một nhóm kiến trúc sư tin rằng ngôi nhà tốt nhất là ngôi nhà hiểu khí hậu, hiểu đất và hiểu người sống trong nó.'
+}) %>
+
+<section class="section section-tight">
+  <div class="container about-intro">
+    <figure class="about-figure reveal">
+      <img src="<%= url(projects[0].cover) %>" alt="<%= projects[0].title %>" loading="lazy" width="1200" height="900">
+    </figure>
+    <div class="prose reveal">
+      <p class="prose-lead">Tên “Viin” ghép từ chữ <em>Việt</em> và <em>in</em> — ở bên trong. Chúng tôi thiết kế từ trong ra ngoài: bắt đầu từ nếp sinh hoạt, ánh sáng của từng giờ trong ngày, rồi mới tới hình khối và mặt đứng.</p>
+      <p>Đội ngũ 18 kiến trúc sư, kỹ sư và nhà thiết kế nội thất làm việc theo nhóm nhỏ. Mỗi dự án có một kiến trúc sư chủ trì đồng hành từ buổi gặp đầu tiên đến ngày bàn giao, để không ý tưởng nào bị thất lạc giữa đường.</p>
+      <p>Chúng tôi nhận số lượng dự án vừa đủ mỗi năm, để có thời gian cho từng chi tiết — và để có mặt tại công trường khi cần.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Triết lý</p>
+      <h2 class="section-title">Ba điều chúng tôi theo đuổi</h2>
+    </div>
+    <div class="principles">
+      <% content.principles.forEach((p, i) => { %>
+      <div class="principle reveal">
+        <span class="process-num"><%= String(i + 1).padStart(2, '0') %></span>
+        <h3><%= p.title %></h3>
+        <p><%= p.text %></p>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Con người</p>
+      <h2 class="section-title">Đội ngũ</h2>
+    </div>
+    <ul class="team">
+      <% content.team.forEach((m) => { %>
+      <li class="member reveal">
+        <span class="member-avatar" aria-hidden="true"><%= m.initials %></span>
+        <h3 class="member-name"><%= m.name %></h3>
+        <p class="member-role"><%= m.role %></p>
+      </li>
+      <% }) %>
+    </ul>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container two-col">
+    <div>
+      <div class="section-head">
+        <p class="eyebrow">Hành trình</p>
+        <h2 class="section-title">Cột mốc</h2>
+      </div>
+      <ol class="timeline">
+        <% content.timeline.forEach((t) => { %>
+        <li class="reveal"><span class="timeline-year"><%= t.year %></span><p><%= t.text %></p></li>
+        <% }) %>
+      </ol>
+    </div>
+    <div>
+      <div class="section-head">
+        <p class="eyebrow">Ghi nhận</p>
+        <h2 class="section-title">Giải thưởng</h2>
+      </div>
+      <ul class="awards">
+        <% content.awards.forEach((a) => { %>
+        <li class="reveal"><span class="timeline-year"><%= a.year %></span><div><strong><%= a.name %></strong><span><%= a.project %></span></div></li>
+        <% }) %>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<%- include('../partials/cta') %>

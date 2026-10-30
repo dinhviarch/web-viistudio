@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>document.documentElement.classList.add('js')</script>
+  <% const fullTitle = page.path === '/' ? page.title : `${page.title} — ${site.fullName}`; %>
+  <title><%= fullTitle %></title>
+  <meta name="description" content="<%= page.description %>">
+  <% if (page.noindex) { %><meta name="robots" content="noindex"><% } else { %><link rel="canonical" href="<%= site.url + url(page.path) %>"><% } %>
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="<%= site.locale %>">
+  <meta property="og:site_name" content="<%= site.fullName %>">
+  <meta property="og:title" content="<%= fullTitle %>">
+  <meta property="og:description" content="<%= page.description %>">
+  <meta property="og:url" content="<%= site.url + url(page.path) %>">
+  <% if (page.image && !page.image.endsWith('.svg')) { %><meta property="og:image" content="<%= site.url + url(page.image) %>"><% } %>
+  <meta name="theme-color" content="#f4f1ec">
+  <link rel="icon" href="<%= url('/assets/images/favicon.svg') %>" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500&display=swap">
+  <link rel="stylesheet" href="<%= asset('/assets/css/style.css') %>">
+  <% if (page.path === '/') { %>
+  <script type="application/ld+json"><%- JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    name: site.fullName,
+    description: site.description,
+    url: site.url,
+    telephone: site.contact.phone,
+    email: site.contact.email,
+    address: { '@type': 'PostalAddress', streetAddress: site.contact.address, addressCountry: 'VN' },
+    foundingDate: String(site.founded)
+  }) %></script>
+  <% } %>
+</head>
+<body class="page-<%= page.view %>">
+  <a class="skip-link" href="#main">Bỏ qua tới nội dung</a>
+  <%- include('partials/header') %>
+  <main id="main">
+<%- body %>
+  </main>
+  <%- include('partials/footer') %>
+  <script src="<%= asset('/assets/js/main.js') %>" defer></script>
+</body>
+</html>

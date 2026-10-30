@@ -1,0 +1,23 @@
+<%- include('../partials/page-hero', {
+  eyebrow: 'Dự án',
+  heading: 'Những công trình<br><em>chúng tôi đã cùng xây.</em>',
+  lead: 'Tuyển chọn ' + projects.length + ' trong số hơn 140 công trình nhà ở, công cộng, văn phòng và nội thất trên khắp Việt Nam.'
+}) %>
+
+<section class="section section-tight">
+  <div class="container">
+    <div class="filters" role="group" aria-label="Lọc theo loại hình" data-filters>
+      <button type="button" class="filter is-active" data-filter="all" aria-pressed="true">Tất cả <sup><%= projects.length %></sup></button>
+      <% categories.forEach((c) => { const n = projects.filter((p) => p.category === c.id).length; if (!n) return; %>
+      <button type="button" class="filter" data-filter="<%= c.id %>" aria-pressed="false"><%= c.label %> <sup><%= n %></sup></button>
+      <% }) %>
+    </div>
+    <div class="project-grid" data-project-grid>
+      <% projects.forEach((project) => { %>
+        <%- include('../partials/project-card', { project }) %>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<%- include('../partials/cta') %>

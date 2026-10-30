@@ -1,0 +1,41 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <p class="footer-lead">Có một khu đất, một căn nhà cũ, hay chỉ một ý tưởng?<br><a href="<%= url('/lien-he/') %>">Hãy kể cho chúng tôi nghe <%- include('icon', { name: 'arrow' }) %></a></p>
+    </div>
+    <div class="footer-grid">
+      <div>
+        <a class="logo logo-light" href="<%= url('/') %>">
+          <span class="logo-mark" aria-hidden="true"></span><span class="logo-word">viin</span><span class="logo-sub">architects</span>
+        </a>
+        <p class="footer-desc"><%= site.description %></p>
+      </div>
+      <div>
+        <h2 class="footer-title">Studio</h2>
+        <address>
+          <%= site.contact.address %><br>
+          <a href="tel:<%= site.contact.phone.replace(/\s/g, '') %>"><%= site.contact.phone %></a><br>
+          <a href="mailto:<%= site.contact.email %>"><%= site.contact.email %></a>
+        </address>
+        <p class="footer-muted"><%= site.contact.hours %></p>
+      </div>
+      <div>
+        <h2 class="footer-title">Khám phá</h2>
+        <ul class="footer-links">
+          <li><a href="<%= url('/') %>">Trang chủ</a></li>
+          <% site.nav.forEach((item) => { %><li><a href="<%= url(item.href) %>"><%= item.label %></a></li><% }) %>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-title">Theo dõi</h2>
+        <ul class="footer-links">
+          <% site.social.forEach((s) => { %><li><a href="<%= s.href %>" target="_blank" rel="noopener"><%= s.label %></a></li><% }) %>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <%= year %> <%= site.fullName %>. Bảo lưu mọi quyền.</span>
+      <a href="#main" class="to-top">Lên đầu trang ↑</a>
+    </div>
+  </div>
+</footer>

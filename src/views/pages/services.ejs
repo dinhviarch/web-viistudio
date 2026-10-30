@@ -1,0 +1,69 @@
+<%- include('../partials/page-hero', {
+  eyebrow: 'Dịch vụ',
+  heading: 'Thiết kế trọn vẹn,<br><em>đồng hành đến cùng.</em>',
+  lead: 'Viin cung cấp dịch vụ thiết kế kiến trúc và nội thất trọn gói, cùng giám sát tác giả để công trình được xây đúng như đã vẽ.'
+}) %>
+
+<section class="section section-tight">
+  <div class="container">
+    <div class="service-cards">
+      <% content.services.forEach((s, i) => { %>
+      <article class="service-card reveal" id="<%= s.id %>">
+        <span class="service-num"><%= String(i + 1).padStart(2, '0') %></span>
+        <h2 class="service-card-title"><%= s.title %></h2>
+        <p><%= s.summary %></p>
+        <ul class="check-list">
+          <% s.items.forEach((item) => { %><li><%= item %></li><% }) %>
+        </ul>
+      </article>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Quy trình</p>
+      <h2 class="section-title">Năm bước làm việc cùng Viin</h2>
+    </div>
+    <ol class="process">
+      <% content.process.forEach((step, i) => { %>
+      <li class="process-step reveal">
+        <span class="process-num"><%= String(i + 1).padStart(2, '0') %></span>
+        <h3><%= step.title %></h3>
+        <p><%= step.text %></p>
+      </li>
+      <% }) %>
+    </ol>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container two-col">
+    <div class="section-head">
+      <p class="eyebrow">Hỏi đáp</p>
+      <h2 class="section-title">Câu hỏi thường gặp</h2>
+      <p class="muted">Chưa thấy câu trả lời bạn cần? <a class="link-underline" href="<%= url('/lien-he/') %>">Gửi câu hỏi cho chúng tôi</a>.</p>
+    </div>
+    <div class="faq">
+      <% content.faq.forEach((f) => { %>
+      <details class="faq-item">
+        <summary><%= f.q %><%- include('../partials/icon', { name: 'plus' }) %></summary>
+        <p><%= f.a %></p>
+      </details>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <figure class="quote reveal">
+      <blockquote><p>“<%= content.testimonials[1].quote %>”</p></blockquote>
+      <figcaption><strong><%= content.testimonials[1].name %></strong> — <%= content.testimonials[1].role %></figcaption>
+    </figure>
+  </div>
+</section>
+
+<%- include('../partials/cta') %>
